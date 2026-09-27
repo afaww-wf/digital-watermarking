@@ -1,0 +1,1393 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Digital Watermarking</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+
+<div class="app-shell">
+
+    <!-- =====================================================
+         SIDEBAR
+    ====================================================== -->
+
+    <aside class="sidebar">
+
+        <div class="brand">
+            <div class="brand-icon">
+                <svg viewBox="0 0 24 24" fill="none">
+                    <path
+                        d="M12 3L19 6V11C19 15.5 16.2 19.2 12 21C7.8 19.2 5 15.5 5 11V6L12 3Z"
+                        stroke="currentColor"
+                        stroke-width="1.8"
+                        stroke-linejoin="round"
+                    />
+                    <path
+                        d="M9.5 12L11.2 13.7L14.8 10.1"
+                        stroke="currentColor"
+                        stroke-width="1.8"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                    />
+                </svg>
+            </div>
+
+            <div>
+                <div class="brand-title">Digital Watermarking</div>
+                <div class="brand-subtitle">
+                    Secure Image Protection
+                </div>
+            </div>
+        </div>
+
+
+        <div class="sidebar-label">
+            MENU UTAMA
+        </div>
+
+        <nav class="sidebar-menu">
+
+            <button class="menu-item" data-page="beranda">
+                <span class="menu-icon">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M3 11L12 4L21 11V20H15V14H9V20H3V11Z"/>
+                    </svg>
+                </span>
+                <span>Beranda</span>
+            </button>
+
+            <button class="menu-item active" data-page="sisip">
+                <span class="menu-icon">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M12 16V4"/>
+                        <path d="M7 9L12 4L17 9"/>
+                        <path d="M5 14V19H19V14"/>
+                    </svg>
+                </span>
+                <span>Sisipkan</span>
+            </button>
+
+            <button class="menu-item" data-page="ekstrak">
+                <span class="menu-icon">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M12 8V20"/>
+                        <path d="M7 15L12 20L17 15"/>
+                        <path d="M5 4H19V9"/>
+                    </svg>
+                </span>
+                <span>Ekstrak</span>
+            </button>
+
+            <button class="menu-item" data-page="serangan">
+                <span class="menu-icon">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M12 3L19 6V11C19 15.5 16.2 19.2 12 21C7.8 19.2 5 15.5 5 11V6L12 3Z"/>
+                        <path d="M12 7V12"/>
+                        <path d="M12 16H12.01"/>
+                    </svg>
+                </span>
+                <span>Serangan &amp; Uji</span>
+            </button>
+
+        </nav>
+
+
+        <div class="sidebar-bottom">
+
+            <div class="tech-card">
+
+                <div class="tech-icon">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M12 3L19 6V11C19 15.5 16.2 19.2 12 21C7.8 19.2 5 15.5 5 11V6L12 3Z"/>
+                    </svg>
+                </div>
+
+                <div>
+                    <div class="tech-title">
+                        Digital Watermarking
+                    </div>
+
+                    <div class="tech-line">
+                        DCT 8×8 + QIM
+                    </div>
+
+                    <div class="tech-line">
+                        Blind Watermarking
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="sidebar-footer">
+                UAS KKI · Informatika
+            </div>
+
+        </div>
+
+    </aside>
+
+
+    <!-- =====================================================
+         MAIN
+    ====================================================== -->
+
+    <main class="main-content">
+
+        <!-- TOP BAR -->
+
+        <header class="topbar">
+
+            <div class="topbar-left">
+
+                <button class="mobile-menu" id="mobileMenuButton">
+                    ☰
+                </button>
+
+                <div>
+                    <div class="topbar-title">
+                        Digital Watermarking
+                    </div>
+
+                    <div class="topbar-subtitle">
+                        Implementasi watermarking berbasis DCT untuk menjaga integritas citra digital.
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div class="topbar-right">
+
+                <button class="notification-button" title="Notifikasi">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M18 8C18 4.7 15.8 2 12 2C8.2 2 6 4.7 6 8C6 13 4 14 4 16H20C20 14 18 13 18 8Z"/>
+                        <path d="M10 20C10.5 21 11.2 21.5 12 21.5C12.8 21.5 13.5 21 14 20"/>
+                    </svg>
+                    <span class="notification-dot"></span>
+                </button>
+
+                <div class="profile">
+
+                    <div class="avatar">
+                        WF
+                    </div>
+
+                    <div class="profile-info">
+                        <div class="profile-name">
+                            Wafa Faujiah
+                        </div>
+
+                        <div class="profile-role">
+                            Mahasiswa Informatika
+                        </div>
+                    </div>
+
+                    <span class="profile-arrow">
+                        ▾
+                    </span>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- HERO -->
+
+        <section class="hero-banner">
+
+            <div class="hero-content">
+
+                <div class="hero-badge">
+                    <span class="hero-badge-dot"></span>
+                    DCT 8×8 + QIM
+                </div>
+
+                <h1>
+                    Lindungi citra digital<br>
+                    dengan <span>watermark</span>
+                </h1>
+
+                <p>
+                    Sisipkan identitas kepemilikan ke dalam citra
+                    dan uji ketahanannya terhadap berbagai manipulasi.
+                </p>
+
+            </div>
+
+
+            <div class="hero-visual">
+
+                <div class="hero-orb orb-one"></div>
+                <div class="hero-orb orb-two"></div>
+
+                <div class="hero-shield">
+
+                    <svg viewBox="0 0 24 24">
+                        <path
+                            d="M12 3L19 6V11C19 15.5 16.2 19.2 12 21C7.8 19.2 5 15.5 5 11V6L12 3Z"
+                        />
+
+                        <path
+                            d="M9 12L11.2 14.2L15.5 9.9"
+                        />
+
+                    </svg>
+
+                </div>
+
+                <div class="hero-photo-card">
+                    <div class="photo-placeholder">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- PROCESS NAVIGATION -->
+
+        <div class="process-tabs">
+
+            <button class="process-tab active" data-page="sisip">
+
+                <span class="process-number">
+                    01
+                </span>
+
+                <span>
+                    <strong>Sisipkan</strong>
+                    <small>Sisipkan watermark ke citra</small>
+                </span>
+
+            </button>
+
+
+            <div class="process-line"></div>
+
+
+            <button class="process-tab" data-page="ekstrak">
+
+                <span class="process-number">
+                    02
+                </span>
+
+                <span>
+                    <strong>Ekstrak</strong>
+                    <small>Ekstrak watermark dari citra</small>
+                </span>
+
+            </button>
+
+
+            <div class="process-line"></div>
+
+
+            <button class="process-tab" data-page="serangan">
+
+                <span class="process-number">
+                    03
+                </span>
+
+                <span>
+                    <strong>Serangan &amp; Uji</strong>
+                    <small>Uji ketahanan watermark</small>
+                </span>
+
+            </button>
+
+        </div>
+
+
+        <!-- =================================================
+             PAGE: SISIP
+        ================================================== -->
+
+        <section class="page active" id="page-sisip">
+
+            <div class="page-grid">
+
+                <!-- LEFT -->
+
+                <div class="content-column">
+
+                    <div class="section-heading">
+
+                        <div>
+                            <h2>
+                                Sisipkan Watermark
+                            </h2>
+
+                            <p>
+                                Masukkan citra dan watermark untuk memulai proses penyisipan.
+                            </p>
+                        </div>
+
+                        <div class="status-badge">
+                            <span></span>
+                            Ready
+                        </div>
+
+                    </div>
+
+
+                    <!-- UPLOAD CARD -->
+
+                    <div class="card">
+
+                        <div class="card-header">
+
+                            <div>
+                                <h3>Citra Asli</h3>
+                                <p>Upload citra yang ingin diberi watermark.</p>
+                            </div>
+
+                            <span class="format-badge">
+                                PNG / JPG
+                            </span>
+
+                        </div>
+
+                        <label class="upload-area" id="imageDropzone">
+
+                            <input
+                                type="file"
+                                id="imageInput"
+                                accept=".png,.jpg,.jpeg,image/png,image/jpeg"
+                                hidden
+                            >
+
+                            <div class="upload-icon">
+
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M12 16V4"/>
+                                    <path d="M7 9L12 4L17 9"/>
+                                    <path d="M5 14V19H19V14"/>
+                                </svg>
+
+                            </div>
+
+                            <div class="upload-title">
+                                Klik untuk upload atau tarik gambar ke sini
+                            </div>
+
+                            <div class="upload-description">
+                                PNG atau JPG · Maksimal 10 MB
+                            </div>
+
+                        </label>
+
+
+                        <div
+                            class="image-preview-wrapper hidden"
+                            id="imagePreviewWrapper"
+                        >
+
+                            <div class="image-preview">
+
+                                <img
+                                    id="imagePreview"
+                                    alt="Preview citra asli"
+                                >
+
+                                <button
+                                    class="remove-image"
+                                    id="removeImageButton"
+                                    type="button"
+                                >
+                                    ×
+                                </button>
+
+                            </div>
+
+                            <div class="image-file-info">
+
+                                <strong id="imageFileName">
+                                    citra.jpg
+                                </strong>
+
+                                <span id="imageFileDimension">
+                                    512 × 512 px
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- WATERMARK CARD -->
+
+                    <div class="card">
+
+                        <div class="card-header">
+
+                            <div>
+                                <h3>Sumber Watermark</h3>
+
+                                <p>
+                                    Pilih identitas yang ingin disisipkan.
+                                </p>
+                            </div>
+
+                            <span class="size-badge">
+                                32 × 32 bit
+                            </span>
+
+                        </div>
+
+
+                        <div class="radio-group">
+
+                            <label class="radio-option active" id="textRadio">
+
+                                <input
+                                    type="radio"
+                                    name="watermarkSource"
+                                    value="teks"
+                                    checked
+                                >
+
+                                <span class="custom-radio"></span>
+
+                                <span>
+                                    <strong>Teks identitas</strong>
+                                    <small>Contoh: NPM</small>
+                                </span>
+
+                            </label>
+
+
+                            <label class="radio-option" id="logoRadio">
+
+                                <input
+                                    type="radio"
+                                    name="watermarkSource"
+                                    value="logo"
+                                >
+
+                                <span class="custom-radio"></span>
+
+                                <span>
+                                    <strong>Gambar logo</strong>
+                                    <small>PNG / JPG</small>
+                                </span>
+
+                            </label>
+
+                        </div>
+
+
+                        <div id="textWatermarkPanel">
+
+                            <div class="field-label-row">
+
+                                <label for="watermarkText">
+                                    Teks watermark
+                                </label>
+
+                                <span id="textCounter">
+                                    9/32
+                                </span>
+
+                            </div>
+
+                            <input
+                                class="text-input"
+                                type="text"
+                                id="watermarkText"
+                                value="237006001"
+                                maxlength="32"
+                                placeholder="Masukkan teks atau NPM"
+                            >
+
+                        </div>
+
+
+                        <div
+                            id="logoWatermarkPanel"
+                            class="hidden"
+                        >
+
+                            <label class="logo-upload">
+
+                                <input
+                                    type="file"
+                                    id="watermarkImageInput"
+                                    accept=".png,.jpg,.jpeg,image/png,image/jpeg"
+                                    hidden
+                                >
+
+                                <div class="logo-upload-icon">
+                                    +
+                                </div>
+
+                                <div>
+                                    <strong>
+                                        Upload logo watermark
+                                    </strong>
+
+                                    <small>
+                                        PNG / JPG
+                                    </small>
+                                </div>
+
+                            </label>
+
+                        </div>
+
+
+                        <div class="watermark-preview-section">
+
+                            <div class="preview-label">
+                                Pratinjau watermark
+                            </div>
+
+                            <div class="watermark-preview-box">
+
+                                <span id="watermarkPreviewText">
+                                    237006001
+                                </span>
+
+                            </div>
+
+                            <div class="preview-caption">
+                                Watermark biner 32 × 32 bit
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- INSERT BUTTON -->
+
+                    <button
+                        class="primary-button"
+                        id="insertButton"
+                        type="button"
+                    >
+
+                        <svg viewBox="0 0 24 24">
+                            <path d="M12 16V4"/>
+                            <path d="M7 9L12 4L17 9"/>
+                            <path d="M5 14V19H19V14"/>
+                        </svg>
+
+                        <span>Sisipkan Watermark</span>
+
+                    </button>
+
+
+                    <!-- RESULT -->
+
+                    <div
+                        class="result-section hidden"
+                        id="insertResult"
+                    >
+
+                        <div class="section-heading result-heading">
+
+                            <div>
+                                <h2>
+                                    Hasil Penyisipan
+                                </h2>
+
+                                <p>
+                                    Hasil citra setelah proses watermarking.
+                                </p>
+                            </div>
+
+                            <span class="success-badge">
+                                ✓ Berhasil
+                            </span>
+
+                        </div>
+
+
+                        <div class="result-grid">
+
+                            <div class="result-card">
+
+                            
+
+                                <div class="result-card-top">
+                                    <span>Citra Asli</span>
+                                    <small>PNG • 512×512</small>
+                                </div>
+
+                                <div class="result-image">
+                                    <img
+                                        id="resultOriginal"
+                                        alt="Citra asli"
+                                    >
+                                </div>
+
+                            </div>
+
+
+                            <div class="result-card">
+
+                                <div class="result-card-top">
+                                    <span>Citra Watermark</span>
+                                    <small>PNG • 512×512</small>
+                                </div>
+
+                                <div class="result-image">
+                                    <img
+                                        id="resultWatermarked"
+                                        alt="Citra watermark"
+                                    >
+                                </div>
+
+                                 <a
+        id="downloadWatermark"
+        class="btn-download"
+        href="#"
+        download="citra-watermark.png"
+    >
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M12 3v11m0 0 4-4m-4 4-4-4M5 21h14"/>
+        </svg>
+
+        Download PNG
+    </a>
+
+
+                            </div>
+
+
+                            <div class="psnr-card">
+
+                                <div class="psnr-icon">
+                                    <svg viewBox="0 0 24 24">
+                                        <path d="M4 19V5"/>
+                                        <path d="M4 19H20"/>
+                                        <path d="M7 15L10 11L13 13L19 6"/>
+                                    </svg>
+                                </div>
+
+                                <div class="psnr-label">
+                                    PSNR
+                                </div>
+
+                                <div
+                                    class="psnr-value"
+                                    id="psnrValue"
+                                >
+                                    -- dB
+                                </div>
+
+                                <div class="psnr-description">
+                                    Kualitas citra sangat baik
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- RIGHT -->
+
+                <aside class="right-column">
+
+                    <!-- PARAMETERS -->
+
+                    <div class="card parameter-card">
+
+                        <div class="card-title-row">
+
+                            <div>
+                                <h3>Parameter</h3>
+
+                                <p>
+                                    Atur kekuatan dan keamanan watermark.
+                                </p>
+                            </div>
+
+                            <div class="settings-icon">
+                                ⚙
+                            </div>
+
+                        </div>
+
+
+                        <!-- KEY -->
+
+                        <div class="parameter-item">
+
+                            <div class="parameter-label-row">
+
+                                <label for="secretKey">
+                                    Kunci rahasia
+                                </label>
+
+                                <span class="security-label">
+                                    🔒 Secure
+                                </span>
+
+                            </div>
+
+                            <div class="password-wrapper">
+
+                                <input
+                                    class="text-input"
+                                    type="password"
+                                    id="secretKey"
+                                    value="kunci-rahasia-demo"
+                                >
+
+                                <button
+                                    type="button"
+                                    id="togglePassword"
+                                    class="password-toggle"
+                                    title="Tampilkan kunci"
+                                >
+                                    👁
+                                </button>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- DELTA -->
+
+                        <div class="parameter-item">
+
+                            <div class="parameter-label-row">
+
+                                <label for="deltaRange">
+                                    Delta
+                                </label>
+
+                                <strong id="deltaValue">
+                                    25
+                                </strong>
+
+                            </div>
+
+                            <input
+                                type="range"
+                                id="deltaRange"
+                                min="10"
+                                max="60"
+                                step="5"
+                                value="25"
+                            >
+
+                            <div class="range-labels">
+                                <span>10</span>
+                                <span>60</span>
+                            </div>
+
+                        </div>
+
+
+                        <!-- REDUNDANCY -->
+
+                        <div class="parameter-item">
+
+                            <div class="parameter-label-row">
+
+                                <label>
+                                    Redundansi ulang
+                                </label>
+
+                                <strong id="repeatValue">
+                                    3×
+                                </strong>
+
+                            </div>
+
+                            <div class="stepper">
+
+                                <button
+                                    type="button"
+                                    id="repeatMinus"
+                                >
+                                    −
+                                </button>
+
+                                <span id="repeatDisplay">
+                                    3
+                                </span>
+
+                                <button
+                                    type="button"
+                                    id="repeatPlus"
+                                >
+                                    +
+                                </button>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="parameter-help">
+
+                            <div class="help-icon">
+                                i
+                            </div>
+
+                            <p>
+                                Delta lebih besar = lebih tahan serangan,
+                                tetapi PSNR turun. Ulang lebih besar =
+                                lebih tahan crop, tapi kapasitas berkurang.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- INFO -->
+
+                    <div class="card info-card">
+
+                        <div class="info-title">
+                            Informasi Metode
+                        </div>
+
+
+                        <div class="info-row">
+
+                            <span>Metode</span>
+
+                            <strong>
+                                DCT 8×8 + QIM
+                            </strong>
+
+                        </div>
+
+
+                        <div class="info-row">
+
+                            <span>Mode</span>
+
+                            <strong>
+                                Blind
+                            </strong>
+
+                        </div>
+
+
+                        <div class="info-row">
+
+                            <span>Format</span>
+
+                            <strong>
+                                PNG / JPG
+                            </strong>
+
+                        </div>
+
+
+                        <div class="info-row">
+
+                            <span>Ukuran WM</span>
+
+                            <strong>
+                                32 × 32 bit
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+                </aside>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             PAGE: EKSTRAK
+        ================================================== -->
+
+        <section class="page" id="page-ekstrak">
+
+            <div class="section-heading">
+
+                <div>
+                    <h2>
+                        Ekstrak Watermark
+                    </h2>
+
+                    <p>
+                        Ekstrak watermark dari citra tanpa membutuhkan citra asli.
+                    </p>
+                </div>
+
+                <span class="status-badge">
+                    Blind Extraction
+                </span>
+
+            </div>
+
+
+            <div class="extract-grid">
+
+                <div class="card">
+
+                    <div class="card-header">  
+
+                        <div>
+                            <h3>Citra Ber-watermark</h3>
+                            <p>
+                                Gunakan hasil penyisipan atau upload citra lain.
+                            </p>
+                        </div>
+
+                    </div>
+
+                    <div class="extract-session-option">
+
+    <label class="check-option">
+
+        <input
+            type="checkbox"
+            id="useInsertionResult"
+        >
+
+        <span class="custom-checkbox"></span>
+
+        <span class="check-content">
+
+            <strong>
+                Gunakan hasil penyisipan
+            </strong>
+
+            <small>
+                Otomatis menggunakan citra watermark yang baru saja dibuat
+            </small>
+
+        </span>
+
+    </label>
+
+</div>
+
+
+                                        <div class="session-image-preview hidden" id="sessionImagePreview">
+                        <div class="image-preview">
+                            <img id="sessionImage" alt="Citra hasil penyisipan">
+                        </div>
+                        <div class="image-file-info">
+                            <strong>Citra dari halaman Sisipkan</strong>
+                        </div>
+                    </div>
+
+                    <label class="upload-area compact" id="extractUploadArea">
+
+                        <input
+                            type="file"
+                            id="extractImageInput"
+                            accept=".png,.jpg,.jpeg,image/png,image/jpeg"
+                            hidden
+                        >
+
+                        <div class="upload-icon">
+                            ↑
+                        </div>
+
+                        <div class="upload-title">
+                            Upload citra untuk diekstrak
+                        </div>
+
+                        <div class="upload-description">
+                            PNG atau JPG
+                        </div>
+
+                    </label>
+
+                    <div
+                        class="extract-file-info hidden"
+                        id="extractFileInfo"
+                    >
+                        <strong id="extractFileName"></strong>
+                        <button id="useSessionButton" type="button">
+                            Gunakan hasil penyisipan
+                        </button>
+                    </div>
+
+
+                    <button
+                        class="primary-button"
+                        id="extractButton"
+                        type="button"
+                    >
+                        <span>Ekstrak Watermark</span>
+                    </button>
+
+                </div>
+
+
+                <div class="card extraction-result">
+
+                    <div class="card-header">
+
+                        <div>
+                            <h3>Watermark Hasil Ekstraksi</h3>
+                            <p>
+                                Hasil watermark yang ditemukan.
+                            </p>
+                        </div>
+
+                    </div>
+
+
+                    <div class="large-watermark-result empty" id="watermarkResultBox">
+                     <img id="extractedWatermark" class="hidden" alt="Watermark hasil ekstraksi">
+                    <div class="empty-result" id="extractionEmpty">
+                          Watermark hasil ekstraksi akan muncul di sini.
+                     </div>
+                           </div>
+
+
+                    <div class="metric-row">
+
+                        <div class="metric-box">
+                            <span>NC</span>
+                            <strong id="extractNC">--</strong>
+                        </div>
+
+                        <div class="metric-box">
+                            <span>BER</span>
+                            <strong id="extractBER">--</strong>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             PAGE: SERANGAN
+        ================================================== -->
+
+        <section class="page" id="page-serangan">
+
+            <div class="section-heading">
+
+                <div>
+                    <h2>
+                        Serangan &amp; Uji
+                    </h2>
+
+                    <p>
+                        Uji ketahanan watermark terhadap berbagai manipulasi citra.
+                    </p>
+                </div>
+
+                <span class="status-badge">
+                    Robustness Test
+                </span>
+
+            </div>
+
+
+            <div class="card attack-card">
+
+                <div class="attack-toolbar">
+
+                    <div>
+                        <h3>
+                            Pengujian Ketahanan
+                        </h3>
+
+                        <p>
+                            Jalankan satu serangan untuk demo langsung atau semua serangan sekaligus.
+                        </p>
+                    </div>
+
+                    <select id="attackSelect">
+                        <option value="">
+                            Pilih serangan
+                        </option>
+                    </select>
+
+                </div>
+
+
+                <div class="attack-actions">
+
+                    <button
+                        class="secondary-button"
+                        id="runAttackButton"
+                    >
+                        Jalankan Serangan
+                    </button>
+
+                    <button
+                        class="primary-button small-button"
+                        id="runAllButton"
+                    >
+                        Uji Semua Serangan
+                    </button>
+
+                </div>
+
+
+                <div
+                    class="attack-result hidden"
+                    id="attackResult"
+                >
+
+                    <div class="attack-images">
+
+                        <div>
+                            <span>Sebelum Serangan</span>
+
+                            <img
+                                id="attackBefore"
+                                alt="Sebelum serangan"
+                            >
+                        </div>
+
+
+                        <div>
+                            <span>Setelah Serangan</span>
+
+                            <img
+                                id="attackAfter"
+                                alt="Setelah serangan"
+                            >
+                        </div>
+
+
+                        <div>
+                            <span>Watermark Hasil</span>
+
+                            <img
+                                id="attackWatermark"
+                                alt="Watermark hasil"
+                            >
+                        </div>
+
+                    </div>
+
+
+                    <div class="metric-row">
+
+                        <div class="metric-box">
+                            <span>NC</span>
+                            <strong id="attackNC">--</strong>
+                        </div>
+
+                        <div class="metric-box">
+                            <span>BER</span>
+                            <strong id="attackBER">--</strong>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div
+                    class="table-wrapper hidden"
+                    id="attackTableWrapper"
+                >
+
+                    <div class="table-header">
+
+                        <div>
+                            <h3>
+                                Hasil Seluruh Pengujian
+                            </h3>
+
+                            <p>
+                                Nilai NC dan BER setelah setiap serangan.
+                            </p>
+                        </div>
+
+                        <a
+                            class="download-button"
+                            id="downloadXlsx"
+                            href="/api/uji-semua/xlsx"
+                        >
+                            ↓ Unduh XLSX
+                        </a>
+
+                    </div>
+
+
+                    <div class="table-scroll">
+
+                        <table>
+
+                            <thead>
+                                <tr>
+                                    <th>Serangan</th>
+                                    <th>NC</th>
+                                    <th>BER</th>
+                                </tr>
+                            </thead>
+
+                            <tbody id="attackTableBody">
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             PAGE: BERANDA
+        ================================================== -->
+
+        <section class="page" id="page-beranda">
+
+            <div class="welcome-card">
+
+                <div class="welcome-content">
+
+                    <span class="hero-badge">
+                        DIGITAL IMAGE SECURITY
+                    </span>
+
+                    <h1>
+                        Selamat datang di<br>
+                        <span>Digital Watermarking</span>
+                    </h1>
+
+                    <p>
+                        Aplikasi untuk menyisipkan tanda kepemilikan
+                        ke dalam citra digital dan menguji ketahanannya
+                        terhadap berbagai bentuk manipulasi.
+                    </p>
+
+                    <button
+                        class="primary-button"
+                        data-page="sisip"
+                    >
+                        Mulai Sisipkan Watermark
+                    </button>
+
+                </div>
+
+                    <div class="hero-visual">
+        <div class="hero-orb orb-one"></div>
+        <div class="hero-orb orb-two"></div>
+        <div class="hero-shield">
+            <svg viewBox="0 0 24 24">
+                <path d="M12 3L19 6V11C19 15.5 16.2 19.2 12 21C7.8 19.2 5 15.5 5 11V6L12 3Z"/>
+                <path d="M9 12L11.2 14.2L15.5 9.9"/>
+            </svg>
+        </div>
+        <div class="hero-photo-card">
+            <div class="photo-placeholder">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+    </div>
+
+            </div>
+
+
+            <div class="feature-grid">
+
+                <div class="feature-card">
+                    <div class="feature-number">01</div>
+                    <h3>Sisipkan</h3>
+                    <p>
+                        Tanamkan teks identitas atau logo biner
+                        ke dalam citra menggunakan DCT + QIM.
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-number">02</div>
+                    <h3>Ekstrak</h3>
+                    <p>
+                        Ambil kembali watermark dari citra
+                        menggunakan mode blind.
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-number">03</div>
+                    <h3>Uji Ketahanan</h3>
+                    <p>
+                        Evaluasi watermark menggunakan NC dan BER
+                        setelah berbagai serangan citra.
+                    </p>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- FOOTER -->
+
+        <footer class="footer">
+            Digital Watermarking · DCT 8×8 + QIM · Blind Watermarking
+        </footer>
+
+    </main>
+
+</div>
+
+
+<!-- TOAST -->
+
+<div
+    class="toast"
+    id="toast"
+>
+    <span id="toastMessage"></span>
+</div>
+
+
+<script src="/app.js"></script>
+
+<script>
+  const topbarEl = document.querySelector('.topbar');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 4) {
+      topbarEl.classList.add('scrolled');
+    } else {
+      topbarEl.classList.remove('scrolled');
+    }
+  });
+</script>
+
+</body>
+</html>
