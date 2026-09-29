@@ -1,11 +1,4 @@
-"""Backend Flask untuk aplikasi Digital Watermarking.
-
-Jalankan dengan:
-    python server.py
-
-Lalu buka:
-    http://localhost:5000
-
+"""Backend Flask
 Catatan:
 State disimpan di variabel global STATE karena aplikasi ini
 untuk demo lokal satu pengguna.
@@ -32,9 +25,8 @@ app = Flask(__name__, static_folder="web", static_url_path="")
 STATE: dict = {}
 
 
-# ============================================================
 # FUNGSI BANTU GAMBAR
-# ============================================================
+
 
 def img_ke_b64(arr: np.ndarray) -> str:
     """Mengubah array gambar menjadi base64 PNG."""
@@ -74,9 +66,8 @@ def wm_ke_b64(wm: np.ndarray, skala: int = 6) -> str:
     )
 
 
-# ============================================================
 # KONVERSI GAMBAR
-# ============================================================
+
 
 def berkas_ke_rgb(berkas) -> np.ndarray:
     """
@@ -158,10 +149,8 @@ def siapkan_citra(berkas):
 
     return rgb, luminance
 
-
-# ============================================================
 # WATERMARK TEKS
-# ============================================================
+
 
 def teks_ke_watermark(
     teks: str,
@@ -237,9 +226,9 @@ def teks_ke_watermark(
     ).astype(np.uint8)
 
 
-# ============================================================
+
 # WATERMARK LOGO
-# ============================================================
+
 
 def gambar_ke_watermark(
     berkas,
@@ -257,18 +246,18 @@ def gambar_ke_watermark(
     ).astype(np.uint8)
 
 
-# ============================================================
+
 # ROUTE HALAMAN
-# ============================================================
+
 
 @app.route("/")
 def index():
     return app.send_static_file("index.html")
 
 
-# ============================================================
+
 # API DAFTAR SERANGAN
-# ============================================================
+
 
 @app.route("/api/serangan/daftar")
 def api_daftar_serangan():
@@ -277,9 +266,8 @@ def api_daftar_serangan():
     )
 
 
-# ============================================================
+
 # API SISIPKAN WATERMARK
-# ============================================================
 
 @app.route("/api/sisip", methods=["POST"])
 def api_sisip():
@@ -402,9 +390,9 @@ def api_sisip():
         luminance_wm
     )
 
-    # --------------------------------------------------------
+    
     # Simpan state
-    # --------------------------------------------------------
+    
 
     STATE.update(
         citra_asli_rgb=rgb_asli,
@@ -420,9 +408,8 @@ def api_sisip():
         ulang=ulang,
     )
 
-    # --------------------------------------------------------
     # Kirim hasil ke frontend
-    # --------------------------------------------------------
+ 
 
     return jsonify(
 
@@ -451,9 +438,9 @@ def api_sisip():
     )
 
 
-# ============================================================
+
 # API EKSTRAK WATERMARK
-# ============================================================
+
 
 @app.route("/api/ekstrak", methods=["POST"])
 def api_ekstrak():
@@ -489,9 +476,8 @@ def api_ekstrak():
         )
     )
 
-    # --------------------------------------------------------
     # Gunakan citra dari sesi
-    # --------------------------------------------------------
+
 
     if pakai_sesi:
 
@@ -513,9 +499,8 @@ def api_ekstrak():
             "watermark_asli"
         ].shape
 
-    # --------------------------------------------------------
     # Upload citra lain
-    # --------------------------------------------------------
+  
 
     else:
 
@@ -543,9 +528,8 @@ def api_ekstrak():
 
         ukuran_wm = (32, 32)
 
-    # --------------------------------------------------------
     # Ekstraksi
-    # --------------------------------------------------------
+   
 
     try:
 
@@ -569,9 +553,9 @@ def api_ekstrak():
         )
     }
 
-    # --------------------------------------------------------
+    
     # Metrik
-    # --------------------------------------------------------
+   
 
     if pakai_sesi:
 
@@ -606,9 +590,9 @@ def api_ekstrak():
     return jsonify(resp)
 
 
-# ============================================================
+
 # API SATU SERANGAN
-# ============================================================
+
 
 @app.route("/api/serangan", methods=["POST"])
 def api_serangan():
@@ -649,16 +633,13 @@ def api_serangan():
         "watermark_asli"
     ]
 
-    # --------------------------------------------------------
     # Serangan bekerja pada citra RGB
-    # --------------------------------------------------------
+    
 
     citra_serangan_rgb = fn(
         rgb_ke_luminance(citra_wm)
     )
 
-    # Serangan tertentu menghasilkan grayscale.
-    # Untuk ekstraksi cukup gunakan luminance.
     hasil = ekstrak(
         citra_serangan_rgb,
         STATE["kunci"],
@@ -705,10 +686,8 @@ def api_serangan():
         ),
     )
 
-
-# ============================================================
 # API SEMUA SERANGAN
-# ============================================================
+
 
 @app.route("/api/uji-semua", methods=["POST"])
 def api_uji_semua():
@@ -784,9 +763,8 @@ def api_uji_semua():
     return jsonify(hasil)
 
 
-# ============================================================
 # API DOWNLOAD XLSX
-# ============================================================
+
 
 @app.route("/api/uji-semua/xlsx")
 def api_uji_semua_xlsx():
@@ -836,10 +814,8 @@ def api_uji_semua_xlsx():
         ),
     )
 
-
-# ============================================================
 # JALANKAN SERVER
-# ============================================================
+
 
 if __name__ == "__main__":
     app.run(

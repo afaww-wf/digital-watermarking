@@ -1,8 +1,3 @@
-/* =========================================================
-   DIGITAL WATERMARKING
-   Frontend Controller
-========================================================= */
-
 const state = {
     imageFile: null,
     watermarkFile: null,
@@ -14,11 +9,6 @@ const state = {
     delta: 25,
     ulang: 3,
 };
-
-
-/* =========================================================
-   HELPER
-========================================================= */
 
 function $(id) {
     return document.getElementById(id);
@@ -100,10 +90,6 @@ function setButtonLoading(button, loading, text = "Memproses...") {
     }
 }
 
-
-/* =========================================================
-   NAVIGATION
-========================================================= */
 
 function goToPage(pageName) {
 
@@ -204,10 +190,6 @@ function setupMobileMenu() {
         });
 }
 
-
-/* =========================================================
-   IMAGE UPLOAD
-========================================================= */
 
 function setupImageUpload() {
 
@@ -365,9 +347,9 @@ function setupImageUpload() {
 }
 
 
-/* =========================================================
-   WATERMARK SOURCE
-========================================================= */
+/* 
+   WATERMARK 
+ */
 
 function setupWatermarkSource() {
 
@@ -541,9 +523,9 @@ function setupWatermarkSource() {
 }
 
 
-/* =========================================================
+/* 
    PASSWORD
-========================================================= */
+*/
 
 function setupPassword() {
 
@@ -581,9 +563,9 @@ function setupPassword() {
 }
 
 
-/* =========================================================
-   PARAMETERS
-========================================================= */
+/* 
+   PARAMETER
+*/
 
 function setupParameters() {
 
@@ -676,9 +658,9 @@ function setupParameters() {
 }
 
 
-/* =========================================================
+/* 
    INSERT WATERMARK
-========================================================= */
+*/
 
 function setupInsert() {
 
@@ -865,32 +847,17 @@ function setupInsert() {
 }
 
 
-/* =========================================================
+/* 
    SHOW INSERT RESULT
-========================================================= */
-
+ */
 function showInsertResult(data) {
 
-    const section =
-        $("insertResult");
+    $("insertResult").classList.remove("hidden");
 
+    $("resultOriginal").src = data.citra_asli;
+    $("resultWatermarked").src = data.citra_watermark;
 
-    section.classList.remove(
-        "hidden"
-    );
-
-
-    $("resultOriginal").src =
-        data.citra_asli;
-
-
-    $("resultWatermarked").src =
-        data.citra_watermark;
-
-
-    $("psnrValue").textContent =
-        `${data.psnr} dB`;
-
+    $("psnrValue").textContent = `${data.psnr} dB`;
 
     document
         .querySelector(".result-heading")
@@ -901,9 +868,52 @@ function showInsertResult(data) {
 }
 
 
-/* =========================================================
-   EXTRACTION
-========================================================= */
+/* 
+   DOWNLOAD RESULT
+*/
+
+function setupDownload() {
+
+    const button = $("downloadWatermark");
+
+    if (!button) return;
+
+    button.addEventListener("click", (event) => {
+
+        event.preventDefault();
+
+        const img = $("resultWatermarked");
+
+        if (!img || !img.src || img.naturalWidth === 0) {
+            showToast("Belum ada citra hasil untuk diunduh.");
+            return;
+        }
+
+        const canvas = document.createElement("canvas");
+        canvas.width = img.naturalWidth;
+        canvas.height = img.naturalHeight;
+        canvas.getContext("2d").drawImage(img, 0, 0);
+
+        canvas.toBlob((blob) => {
+
+            const url = URL.createObjectURL(blob);
+
+            const a = document.createElement("a");
+            a.href = url;
+            a.download = "citra-watermark.png";
+
+            document.body.appendChild(a);
+            a.click();
+            a.remove();
+
+            setTimeout(() => URL.revokeObjectURL(url), 1000);
+
+        }, "image/png");
+    });
+}
+/* 
+   EXTRAK
+*/
 
 function setupExtraction() {
 
@@ -1138,9 +1148,9 @@ if (useInsertionResult?.checked) {
 }
 
 
-/* =========================================================
-   SHOW EXTRACTION RESULT
-========================================================= */
+/* 
+   HASIL EXTRAK
+ */
 
 function showExtractionResult(data) {
 
@@ -1186,9 +1196,9 @@ function showExtractionResult(data) {
 }
 
 
-/* =========================================================
-   LOAD ATTACK LIST
-========================================================= */
+/*
+   LOAD SERANGAN LIST
+ */
 
 async function loadAttacks() {
 
@@ -1248,9 +1258,9 @@ async function loadAttacks() {
 }
 
 
-/* =========================================================
-   RUN SINGLE ATTACK
-========================================================= */
+/* 
+   RUN SERANGAN
+ */
 
 function setupAttack() {
 
@@ -1386,9 +1396,9 @@ function setupAttack() {
 }
 
 
-/* =========================================================
-   RUN ALL ATTACKS
-========================================================= */
+/* 
+   RUN ALL SERANGAN
+ */
 
 async function runAllAttacks() {
 
@@ -1455,9 +1465,9 @@ async function runAllAttacks() {
 }
 
 
-/* =========================================================
-   ATTACK TABLE
-========================================================= */
+/* 
+   EXCEL TABLE
+ */
 
 function renderAttackTable(results) {
 
@@ -1536,9 +1546,9 @@ function renderAttackTable(results) {
 }
 
 
-/* =========================================================
+/*
    INITIALIZE
-========================================================= */
+*/
 
 document.addEventListener(
     "DOMContentLoaded",
@@ -1558,17 +1568,15 @@ document.addEventListener(
 
         setupInsert();
 
+        setupDownload();
+
         setupExtraction();
 
         setupAttack();
 
         loadAttacks();
 
-        /*
-         * Halaman pertama langsung Sisipkan,
-         * sesuai desain yang kita buat.
-         */
-        goToPage("sisip");
+        goToPage("beranda");
 
     }
 );
