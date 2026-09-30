@@ -405,49 +405,6 @@ img {
     stroke-linejoin: round;
 }
 
-.notification-dot {
-    width: 6px;
-    height: 6px;
-
-    position: absolute;
-    top: 7px;
-    right: 7px;
-
-    border-radius: 50%;
-
-    background: #a855f7;
-}
-
-
-.profile {
-    display: flex;
-    align-items: center;
-    gap: 9px;
-}
-
-
-.avatar {
-    width: 36px;
-    height: 36px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    border-radius: 11px;
-
-    color: white;
-
-    background:
-        linear-gradient(
-            135deg,
-            #8b5cf6,
-            #c084fc
-        );
-
-    font-size: 10px;
-    font-weight: 800;
-}
 
 
 
