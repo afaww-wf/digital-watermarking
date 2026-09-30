@@ -450,22 +450,7 @@ img {
 }
 
 
-.profile-name {
-    font-size: 11px;
-    font-weight: 700;
-    color: #4b4561;
-}
 
-.profile-role {
-    margin-top: 3px;
-    font-size: 9px;
-    color: #a29bad;
-}
-
-.profile-arrow {
-    color: #9992aa;
-    font-size: 13px;
-}
 
 .mobile-menu {
     display: none;
@@ -2152,13 +2137,48 @@ input[type="range"] {
 
 .attack-images img {
     width: 100%;
-    height: 170px;
-
-    object-fit: cover;
-
+    height: 200px;
+    object-fit: contain;
     border-radius: 9px;
-
     background: #efedf3;
+}
+
+.attack-images .empty-slot {
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 0 12px;
+    color: #aaa3b1;
+    font-size: 8px;
+    border-radius: 9px;
+    border: 1.5px dashed #dcd3ed;
+    background: linear-gradient(135deg, rgba(249,247,255,.95), rgba(253,250,255,.95));
+}
+
+.attack-watermark-box {
+    width: 145px;
+    height: 145px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 9px;
+    background: #15121f;
+    overflow: hidden;
+}
+
+.attack-watermark-box.empty {
+    background: linear-gradient(135deg, rgba(249,247,255,.95), rgba(253,250,255,.95));
+    border: 1.5px dashed #dcd3ed;
+}
+
+.attack-watermark-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    image-rendering: pixelated;
 }
 
 
@@ -2845,4 +2865,8 @@ tr:last-child td {
     background: rgba(255, 255, 255, 0.85);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
+}
+
+#attackTableWrapper {
+    scroll-margin-top: 100px;
 }

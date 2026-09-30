@@ -1,6 +1,7 @@
 const state = {
     imageFile: null,
     watermarkFile: null,
+    attackFile: null,
     watermarkSource: "teks",
 
     lastInsertResult: null,
@@ -129,6 +130,10 @@ function goToPage(pageName) {
             );
 
         });
+
+    if (pageName === "serangan") {
+    perbaruiSebelumSerangan();
+     }
 
 
     window.scrollTo({
@@ -933,32 +938,25 @@ function setupExtraction() {
     const sessionImage = $("sessionImage");
     const uploadArea = $("extractUploadArea");
 
-
-    input?.addEventListener(
-        "change",
-        () => {
-
-            if (!input.files.length) {
-                return;
-            }
+    const extractPreview = $("extractPreview");
 
 
-            const file =
-                input.files[0];
+   input?.addEventListener("change", () => {
 
+    if (!input.files.length) return;
 
-            $("extractFileName")
-                .textContent =
-                file.name;
+    const file = input.files[0];
+    const url = URL.createObjectURL(file);
 
+    $("extractFileName").textContent = file.name;
+    extractPreview.src = url;
+    extractPreview.onload = () => URL.revokeObjectURL(url);
 
-            $("extractFileInfo")
-                .classList.remove(
-                    "hidden"
-                );
+    $("extractManualPreviewWrapper").classList.remove("hidden");
+    $("extractFileInfo").classList.remove("hidden");
+    uploadArea.classList.add("hidden");
 
-        }
-    );
+}); 
 
     useInsertionResult?.addEventListener("change", () => {
 
@@ -973,14 +971,19 @@ function setupExtraction() {
         sessionImage.src = state.lastInsertResult.citra_watermark;
         sessionPreview.classList.remove("hidden");
         uploadArea.classList.add("hidden");
+        $("extractManualPreviewWrapper")?.classList.add("hidden");
         $("extractFileInfo")?.classList.add("hidden");
 
         showToast("Hasil penyisipan akan digunakan untuk ekstraksi.");
 
-    } else {
+        } else {
 
         sessionPreview.classList.add("hidden");
         uploadArea.classList.remove("hidden");
+
+        if (input.files.length) {
+            $("extractFileInfo")?.classList.remove("hidden");
+        }
 
     }
 });
@@ -1257,145 +1260,63 @@ async function loadAttacks() {
     }
 }
 
-
-/* 
-   RUN SERANGAN
- */
-
 function setupAttack() {
 
-    const button =
-        $("runAttackButton");
+    const button = $("runAttackButton");
 
+    button?.addEventListener("click", async () => {
 
-    button?.addEventListener(
-        "click",
-        async () => {
+        const attack = $("attackSelect").value;
 
-            const attack =
-                $("attackSelect")
-                    .value;
-
-
-            if (!attack) {
-
-                showToast(
-                    "Pilih jenis serangan terlebih dahulu."
-                );
-
-                return;
-            }
-
-
-            setButtonLoading(
-                button,
-                true,
-                "Menguji..."
-            );
-
-
-            try {
-
-                const response =
-                    await fetch(
-                        "/api/serangan",
-                        {
-                            method: "POST",
-
-                            headers: {
-                                "Content-Type":
-                                    "application/json"
-                            },
-
-                            body:
-                                JSON.stringify({
-                                    nama: attack
-                                })
-                        }
-                    );
-
-
-                if (!response.ok) {
-
-                    throw new Error(
-                        await getErrorMessage(
-                            response
-                        )
-                    );
-
-                }
-
-
-                const data =
-                    await response.json();
-
-
-                $("attackBefore")
-                    .src =
-                    data.citra_sebelum;
-
-
-                $("attackAfter")
-                    .src =
-                    data.citra_sesudah;
-
-
-                $("attackWatermark")
-                    .src =
-                    data.watermark_hasil;
-
-
-                $("attackNC")
-                    .textContent =
-                    Number(data.nc)
-                        .toFixed(4);
-
-
-                $("attackBER")
-                    .textContent =
-                    Number(data.ber)
-                        .toFixed(4);
-
-
-                $("attackResult")
-                    .classList
-                    .remove("hidden");
-
-
-                showToast(
-                    `Serangan ${attack} selesai.`
-                );
-
-            } catch (error) {
-
-                showToast(
-                    error.message
-                );
-
-            } finally {
-
-                setButtonLoading(
-                    button,
-                    false
-                );
-
-            }
-
+        if (!attack) {
+            showToast("Pilih jenis serangan terlebih dahulu.");
+            return;
         }
-    );
 
+        setButtonLoading(button, true, "Menguji...");
 
-    const allButton =
-        $("runAllButton");
+        try {
 
+            const response = await fetch("/api/serangan", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ nama: attack })
+            });
 
-    allButton?.addEventListener(
-        "click",
-        runAllAttacks
-    );
+            if (!response.ok) {
+                throw new Error(await getErrorMessage(response));
+            }
+
+            const data = await response.json();
+
+           $("attackBefore").src = data.citra_sebelum;
+           $("attackBefore").classList.remove("hidden");
+           $("attackBeforeEmpty").classList.add("hidden");
+
+           $("attackAfter").src = data.citra_sesudah;
+           $("attackAfter").classList.remove("hidden");
+           $("attackAfterEmpty").classList.add("hidden");
+
+           $("attackWatermark").src = data.watermark_hasil;
+           $("attackWatermark").classList.remove("hidden");
+           $("attackWatermarkBox").classList.remove("empty");
+
+           $("attackNC").textContent = Number(data.nc).toFixed(4);
+           $("attackBER").textContent = Number(data.ber).toFixed(4);
+
+            showToast(`Serangan ${attack} selesai.`);
+
+        } catch (error) {
+            showToast(error.message);
+        } finally {
+            setButtonLoading(button, false);
+        }
+    });
+
+    $("runAllButton")?.addEventListener("click", runAllAttacks);
 }
 
-
+  
 /* 
    RUN ALL SERANGAN
  */
@@ -1543,6 +1464,35 @@ function renderAttackTable(results) {
     wrapper.classList.remove(
         "hidden"
     );
+
+    wrapper.scrollIntoView({
+    behavior: "smooth",
+    block: "start"
+});
+}
+
+function perbaruiSebelumSerangan() {
+
+    const beforeImg = $("attackBefore");
+    const beforeEmpty = $("attackBeforeEmpty");
+
+    if (state.lastInsertResult) {
+        beforeImg.src = state.lastInsertResult.citra_watermark;
+        beforeImg.classList.remove("hidden");
+        beforeEmpty.classList.add("hidden");
+    } else {
+        beforeImg.classList.add("hidden");
+        beforeEmpty.classList.remove("hidden");
+    }
+
+    $("attackAfter").classList.add("hidden");
+    $("attackAfterEmpty").classList.remove("hidden");
+
+    $("attackWatermark").classList.add("hidden");
+    $("attackWatermarkBox").classList.add("empty");
+
+    $("attackNC").textContent = "--";
+    $("attackBER").textContent = "--";
 }
 
 

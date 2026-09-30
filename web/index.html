@@ -130,7 +130,7 @@
             </div>
 
             <div class="sidebar-footer">
-                UAS KKI · Informatika
+                Digital Watermarking
             </div>
 
         </div>
@@ -166,36 +166,11 @@
 
 
             <div class="topbar-right">
-
-                <button class="notification-button" title="Notifikasi">
                     <svg viewBox="0 0 24 24">
                         <path d="M18 8C18 4.7 15.8 2 12 2C8.2 2 6 4.7 6 8C6 13 4 14 4 16H20C20 14 18 13 18 8Z"/>
                         <path d="M10 20C10.5 21 11.2 21.5 12 21.5C12.8 21.5 13.5 21 14 20"/>
                     </svg>
-                    <span class="notification-dot"></span>
-                </button>
-
-                <div class="profile">
-
-                    <div class="avatar">
-                        WF
-                    </div>
-
-                    <div class="profile-info">
-                        <div class="profile-name">
-                            Wafa Faujiah
-                        </div>
-
-                        <div class="profile-role">
-                            Mahasiswa Informatika
-                        </div>
-                    </div>
-
-                    <span class="profile-arrow">
-                        ▾
-                    </span>
-
-                </div>
+                   
 
             </div>
 
@@ -1017,15 +992,20 @@
 
                     </label>
 
-                    <div
-                        class="extract-file-info hidden"
-                        id="extractFileInfo"
-                    >
-                        <strong id="extractFileName"></strong>
-                        <button id="useSessionButton" type="button">
-                            Gunakan hasil penyisipan
-                        </button>
-                    </div>
+                   <div class="image-preview-wrapper hidden" id="extractManualPreviewWrapper">
+                     <div class="image-preview">
+                          <img id="extractPreview" alt="Pratinjau citra">
+                     </div>
+                      <div class="image-file-info">
+                               <strong id="extractFileName"></strong>
+                   </div>
+                  </div>
+
+                 <div class="extract-file-info hidden" id="extractFileInfo">
+                    <button id="useSessionButton" type="button">
+                       Gunakan hasil penyisipan
+                    </button>
+                  </div>
 
 
                     <button
@@ -1147,43 +1127,30 @@
                 </div>
 
 
-                <div
-                    class="attack-result hidden"
-                    id="attackResult"
-                >
+                <div class="attack-result" id="attackResult">
 
-                    <div class="attack-images">
+    <div class="attack-images">
 
-                        <div>
-                            <span>Sebelum Serangan</span>
+        <div>
+            <span>Sebelum Serangan</span>
+            <img id="attackBefore" class="hidden" alt="Sebelum serangan">
+            <div class="empty-slot" id="attackBeforeEmpty">Sisipkan watermark dulu di halaman Sisipkan.</div>
+        </div>
 
-                            <img
-                                id="attackBefore"
-                                alt="Sebelum serangan"
-                            >
-                        </div>
+        <div>
+            <span>Setelah Serangan</span>
+            <img id="attackAfter" class="hidden" alt="Setelah serangan">
+            <div class="empty-slot" id="attackAfterEmpty">Jalankan serangan untuk melihat hasilnya.</div>
+        </div>
 
+        <div>
+            <span>Watermark Hasil</span>
+            <div class="attack-watermark-box empty" id="attackWatermarkBox">
+                <img id="attackWatermark" class="hidden" alt="Watermark hasil">
+            </div>
+        </div>
 
-                        <div>
-                            <span>Setelah Serangan</span>
-
-                            <img
-                                id="attackAfter"
-                                alt="Setelah serangan"
-                            >
-                        </div>
-
-
-                        <div>
-                            <span>Watermark Hasil</span>
-
-                            <img
-                                id="attackWatermark"
-                                alt="Watermark hasil"
-                            >
-                        </div>
-
-                    </div>
+    </div>
 
 
                     <div class="metric-row">
